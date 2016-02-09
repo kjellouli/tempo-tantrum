@@ -112,6 +112,7 @@ def post_log user, pass, jira_url, schemeless_jira_url, work_date, log, options
   project = log['project']
   comments += CGI::escape(log['comments'])
   dt = DateTime.strptime(work_date, '%m/%d/%Y')
+  dt_ansi = dt.strftime('%Y-%m-%d')
   date_str = CGI::escape(dt.strftime('%d/%b/%y'))
 
   puts "%-30s %3.2f" % [project, hours]
@@ -135,7 +136,7 @@ def post_log user, pass, jira_url, schemeless_jira_url, work_date, log, options
       -H "Connection: keep-alive" \
       -H "DNT: 1" \
       -H "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3" \
-      --data "user=#{user}&id=&type=&selected-panel=0&startTimeEnabled=false&tracker=false&planning=false&issue=#{project}&date=#{date_str}&enddate=#{date_str}&time=#{hours}&remainingEstimate=0&comment=#{comments}" > /dev/null 2>&1
+      --data "user=#{user}&id=&type=&selected-panel=0&startTimeEnabled=false&tracker=false&planning=false&issue=#{project}&date=#{date_str}&enddate=#{date_str}&time=#{hours}&ansidate=#{dt1}&ansienddate=#{dt1}&remainingEstimate=0&comment=#{comments}" > /dev/null 2>&1
     HERE
 
     resp = `#{curl_update_tempo}`
