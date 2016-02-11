@@ -76,7 +76,7 @@ def login login_url, jira_url, schemeless_jira_url, user, pass
   -H "Connection: keep-alive" \
   -H "DNT: 1" \
   -H "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3" \
-  --data "os_username=#{user}&os_password=#{pass}&os_destination=&atl_token=&login=Log+In" > /dev/null 2>&1
+  --data "username=#{user}&password=#{pass}&dest-url=&atl_token=&login=Log+In" > /dev/null 2>&1
   HERE
   `#{curl_login}`
 end
